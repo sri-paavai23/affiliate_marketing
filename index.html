@@ -1,0 +1,765 @@
+git init<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the_realsriii | Product Collection</title>
+  <meta name="description" content="Official product collection for the_realsriii. Explore my catalog and shop your favorites instantly.">
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Embedded Premium CSS -->
+  <style>
+    /* ==========================================
+       1. CSS VARIABLES & DESIGN SYSTEM
+       ========================================== */
+    :root {
+      /* Colors */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-card: #ffffff;
+      --accent-blue: #2874F0;
+      --accent-blue-hover: #1b5ecc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border-color: #e2e8f0;
+      --border-hover: #cbd5e1;
+      
+      /* Gradients */
+      --gradient-orange: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+      --gradient-blue: linear-gradient(135deg, #2874F0 0%, #1e5cbd 100%);
+      
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --shadow-cta: 0 6px 16px rgba(255, 111, 0, 0.15);
+      --shadow-cta-hover: 0 8px 24px rgba(255, 111, 0, 0.25);
+      
+      /* Corner Radius */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      /* Transition */
+      --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================
+       2. RESET & BASE STYLES
+       ========================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================
+       3. STICKY HEADER (Simplified)
+       ========================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      padding: 1.1rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: center; /* Center the logo & name in the absence of the search bar */
+      align-items: center;
+    }
+    
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    
+    .logo-placeholder {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gradient-blue);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(40, 116, 240, 0.25);
+    }
+    
+    .logo-placeholder svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .brand-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    /* ==========================================
+       4. PRODUCTS GRID SECTION
+       ========================================== */
+    .products-section {
+      padding: 3rem 0;
+    }
+    
+    .product-grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+    
+    /* Responsive Grid Columns */
+    @media (min-width: 0px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (min-width: 641px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1025px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (min-width: 1281px) {
+      .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    /* Product Card */
+    .product-card {
+      background-color: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-default);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-hover);
+    }
+    
+    .product-image-container {
+      position: relative;
+      width: 100%;
+      padding: 0.6rem;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    
+    .product-image-container img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background-color: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      display: block;
+      transition: var(--transition-default);
+    }
+    
+    .product-card:hover .product-image-container img {
+      transform: scale(1.03);
+    }
+    
+    .product-actions {
+      padding: 0.2rem 0.6rem 0.85rem 0.6rem;
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+    }
+    
+    .shop-now-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--gradient-orange);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-cta);
+      transition: var(--transition-default);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .shop-now-btn:hover {
+      filter: brightness(1.05);
+      box-shadow: var(--shadow-cta-hover);
+      transform: translateY(-1px);
+    }
+    
+    .shop-now-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ==========================================
+       5. FOOTER SECTION
+       ========================================== */
+    .footer {
+      background-color: var(--text-main);
+      color: #cbd5e1;
+      padding: 3rem 0 2rem 0;
+      border-top: 1px solid #1e293b;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .footer-logo-placeholder {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gradient-blue);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .footer-logo-placeholder svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .footer-brand-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: var(--transition-default);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .social-link:hover {
+      color: #ffffff;
+      background-color: rgba(40, 116, 240, 0.15);
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .footer-bottom {
+      width: 100%;
+      border-top: 1px solid #1e293b;
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .copyright, .made-with {
+      margin: 0;
+    }
+    
+    .made-with span {
+      color: #ef4444;
+      animation: heartbeat 1.5s infinite;
+      display: inline-block;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    /* ==========================================
+       6. RESPONSIVE MEDIA QUERIES
+       ========================================== */
+    @media (max-width: 640px) {
+      .header {
+        padding: 0.9rem 0;
+      }
+      
+      .brand-name {
+        font-size: 1.25rem;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. STICKY HEADER
+       ========================================== -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="brand-container">
+        <!-- Circular Logo Placeholder -->
+        <div class="logo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <span class="brand-name">the_realsriii</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       2. PRODUCTS GRID SECTION
+       ========================================== -->
+  <section class="products-section">
+    <div class="container">
+      <div class="product-grid">
+        
+        <!-- CARD 1 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-17-07-707_com.meesho.supply.png" alt="Product Image 1">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=806346625&ext_id=dc2t1d&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-58-347_com.meesho.supply.png" alt="Product Image 2">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=566795545&ext_id=9dge8p&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-48-737_com.meesho.supply.png" alt="Product Image 3">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=782420666&ext_id=cxtzne&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-35-256_com.meesho.supply.png" alt="Product Image 4">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=899268520&ext_id=eveg14&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-24-434_com.meesho.supply.png" alt="Product Image 5">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=731385256&ext_id=c3g4h4&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-16-619_com.meesho.supply.png" alt="Product Image 6">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=526536559&ext_id=8phi7j&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-08-028_com.meesho.supply.png" alt="Product Image 7">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=977848325&ext_id=g66olh&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 8 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-16-00-352_com.meesho.supply.png" alt="Product Image 8">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=940711215&ext_id=fk2pf3&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 9 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-15-47-307_com.meesho.supply.png" alt="Product Image 9">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=973025946&ext_id=g3bbmi&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 10 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-15-35-709_com.meesho.supply.png" alt="Product Image 10">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=545025727&ext_id=90hsjj&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 11 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-15-23-686_com.meesho.supply.png" alt="Product Image 11">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=674970766&ext_id=b5uyry&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 12 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/Screenshot_2026-06-29-18-15-14-076_com.meesho.supply.png" alt="Product Image 12">
+          </div>
+          <div class="product-actions">
+            <a href="https://www.meesho.com/af_invite/111273282:instagram_stories:5277018?p_id=463224751&ext_id=7nsii7&utm_source=instagram_stories" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 13 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.35.17 PM.jpeg" alt="Product Image 13">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/MszGXTs" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 14 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.36.45 PM.jpeg" alt="Product Image 14">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/ctj78bE" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 15 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.37.45 PM.jpeg" alt="Product Image 15">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/tLQb3x5" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 16 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.44 PM.jpeg" alt="Product Image 16">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/iB0lLv1" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 17 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.45 PM.jpeg" alt="Product Image 17">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/VWGalE9" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 18 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.46 PM (1).jpeg" alt="Product Image 18">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/2oYJUdt" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 19 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.46 PM (2).jpeg" alt="Product Image 19">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/O12CEc2" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 20 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.46 PM.jpeg" alt="Product Image 20">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/RSAJ9yQ" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 21 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.46 PM.jpeg" alt="Product Image 21">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/RSAJ9yQ" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 22 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.47 PM (1).jpeg" alt="Product Image 22">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/oS1UqT4" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 23 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.41.47 PM.jpeg" alt="Product Image 23">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/2ttswn9" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 24 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="D:/affiliat/images/WhatsApp Image 2026-06-29 at 6.43.26 PM.jpeg" alt="Product Image 24">
+          </div>
+          <div class="product-actions">
+            <a href="https://fktr.in/44dHHdk" target="_blank" class="shop-now-btn">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              Shop Now
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. FOOTER
+       ========================================== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <!-- Footer Logo Placeholder -->
+        <div class="footer-logo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <span class="footer-brand-name">the_realsriii</span>
+      </div>
+      
+      <div class="footer-socials">
+        <!-- Instagram Link Placeholder -->
+        <a href="#" target="_blank" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2026 the_realsriii. All rights reserved.</p>
+        <p class="made-with">Made with <span>❤️</span></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
